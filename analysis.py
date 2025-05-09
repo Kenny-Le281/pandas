@@ -65,10 +65,32 @@ for index, row in df.iterrows():
 #print(df.head(5))
 
 # More efficient way to add data
-df['Total'] = df.iloc[:, 4:10].sum(axis = 1) # :, just mean were using all the rows, 4:9 is saying were looking at the 4th column to the 9th column (goes up to tenth column but does not include it), sum(axis = 1) adds these columns horizontally
-print(df.head(5))
+#df['Total'] = df.iloc[:, 4:10].sum(axis = 1) # :, just mean were using all the rows, 4:9 is saying were looking at the 4th column to the 9th column (goes up to tenth column but does not include it), sum(axis = 1) adds these columns horizontally
+#print(df.head(5))
 
 # reformat the order of the columns
-cols = list(df.columns)
-df = df[cols[0:4] + [cols[-1]] + cols[4:12]]
-print(df.head(5))
+#cols = list(df.columns)
+#df = df[cols[0:4] + [cols[-1]] + cols[4:12]]
+#print(df.head(5))
+
+##############################################################
+# Saving our Data (Exporting into Desired Form)
+# Saving to CSV file
+#df.to_csv('modified.csv', index = False)
+
+# Saving to Excel
+# df.to_excel('modififed.xlsx', index = False)
+
+# Saving to txt file
+#df.to_csv('modified.txt', index = False, sep = '\t') # no delimiter but theres a seperator
+
+##############################################################
+# Filtering Data
+new_df = df.loc[(df['Type 1'] == "Grass") & (df['Type 2'] == "Poison") & (df['HP'] > 70)] # using and
+#print(df.loc[(df['Type 1'] == "Grass") | (df['Type 2'] == "Poison")]) # using or, make sure to use parentheses
+#print(new_df)
+
+# new_df.to_csv('filtered_data')
+
+new_df.reset_index(drop = True, inplace = True) #reset the index for the new data
+print(new_df)
